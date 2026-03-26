@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 15% 8%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 15% 8%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 10 90% 52%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 350 80% 45%;
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 0 10% 14%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 20 100% 56%;
+    --accent-foreground: 0 0% 96%;
+
+    --destructive: 0 100% 27%;
+    --destructive-foreground: 0 0% 96%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 4%;
+
+    --border: 0 15% 18%;
+    --input: 0 15% 18%;
+    --ring: 10 90% 52%;
+
+    --radius: 0.5rem;
+
+    --neon-red: 10 90% 52%;
+    --neon-crimson: 350 80% 45%;
+    --ember-orange: 20 100% 56%;
+    --danger-red: 0 100% 27%;
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+
+    --sidebar-background: 0 15% 8%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 10 90% 52%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 10% 14%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 15% 18%;
+    --sidebar-ring: 10 90% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Neon glow effects */
+.neon-text-red {
+  text-shadow:
+    0 0 7px hsl(10 90% 52% / 0.8),
+    0 0 10px hsl(10 90% 52% / 0.6),
+    0 0 21px hsl(10 90% 52% / 0.4),
+    0 0 42px hsl(10 90% 52% / 0.2);
+}
+
+.neon-text-cyan {
+  text-shadow:
+    0 0 7px hsl(10 90% 52% / 0.8),
+    0 0 10px hsl(10 90% 52% / 0.6),
+    0 0 21px hsl(10 90% 52% / 0.4),
+    0 0 42px hsl(10 90% 52% / 0.2);
+}
+
+.neon-text-purple {
+  text-shadow:
+    0 0 7px hsl(350 80% 45% / 0.8),
+    0 0 10px hsl(350 80% 45% / 0.6),
+    0 0 21px hsl(350 80% 45% / 0.4),
+    0 0 42px hsl(350 80% 45% / 0.2);
+}
+
+.neon-box-cyan {
+  box-shadow:
+    0 0 5px hsl(10 90% 52% / 0.5),
+    0 0 10px hsl(10 90% 52% / 0.3),
+    inset 0 0 5px hsl(10 90% 52% / 0.1);
+}
+
+.neon-box-purple {
+  box-shadow:
+    0 0 5px hsl(350 80% 45% / 0.5),
+    0 0 10px hsl(350 80% 45% / 0.3),
+    inset 0 0 5px hsl(350 80% 45% / 0.1);
+}
+
+.glass-panel {
+  background: hsl(0 15% 8% / 0.8);
+  border: 1px solid hsl(10 90% 52% / 0.15);
+}
+
+/* Cursed energy animation */
+@keyframes cursed-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+  75% { opacity: 0.95; }
+  25% { opacity: 0.9; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px hsl(350 80% 45% / 0.6)); }
+  50% { filter: drop-shadow(0 0 20px hsl(350 80% 45% / 0.9)) drop-shadow(0 0 40px hsl(10 90% 52% / 0.3)); }
+}
+
+@keyframes energy-border {
+  0% { border-color: hsl(10 90% 52% / 0.6); }
+  50% { border-color: hsl(350 80% 45% / 0.6); }
+  100% { border-color: hsl(10 90% 52% / 0.6); }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes energy-wave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-flicker { animation: flicker 3s ease-in-out infinite; }
+.animate-glitch { animation: glitch 0.3s ease-in-out; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-energy-border { animation: energy-border 3s ease-in-out infinite; }
+.animate-countdown-pulse { animation: countdown-pulse 2s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: hsl(0 0% 4%); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(10 90% 52%), hsl(350 80% 45%));
+  border-radius: 3px;
+}
+
+/* Colony barrier */
+.colony-barrier {
+  position: relative;
+}
+.colony-barrier::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, hsl(10 90% 52% / 0.4), hsl(350 80% 45% / 0.4), hsl(10 90% 52% / 0.4));
+  animation: energy-wave 6s linear infinite;
+  z-index: -1;
+}
