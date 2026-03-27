@@ -33,18 +33,10 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 0.3 }}
       >
         <h1
-          className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[0.15em] leading-none animate-flicker"
-          style={{
-            background: "linear-gradient(135deg, hsl(10 90% 52%), hsl(350 80% 45%), hsl(20 100% 56%))",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            filter: "drop-shadow(0 0 30px hsl(10 90% 52% / 0.5)) drop-shadow(0 0 60px hsl(350 80% 45% / 0.3))",
-          }}
-        >
-          NEUROPLEX
-        </h1>
-
+  className="neuroplex-title font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[0.15em] leading-none animate-flicker"
+>
+  NEUROPLEX
+</h1>
         <motion.p
           className="font-display text-lg sm:text-xl md:text-2xl tracking-[0.3em] mt-4 text-foreground/80 neon-text-purple"
           initial={{ opacity: 0 }}

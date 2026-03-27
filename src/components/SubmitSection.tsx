@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { supabase } from "@/lib/supabase"; // make sure this path is correct
+import { supabase } from "@/lib/supabase";
 
 interface SubmitSectionProps {
   formData: {
@@ -64,7 +64,7 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-success font-display text-lg">✓ REGISTERED</p>
+          <p className="text-green-400 font-display text-lg">✓ REGISTERED</p>
           <p className="text-muted-foreground text-sm font-body mt-2">
             You have entered the Culling Game
           </p>
@@ -83,7 +83,7 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
         transition={{ duration: 0.5 }}
       >
         {!canSubmit && (
-          <p className="text-primary/70 font-body mb-4 text-xs animate-pulse">
+          <p className="text-primary font-body mb-4 text-xs">
             ⚠️ Fill all fields and select a colony to submit
           </p>
         )}
@@ -91,7 +91,7 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
         <button
           onClick={handleSubmit}
           disabled={!canSubmit || loading}
-          className="font-display text-sm tracking-widest px-10 py-3 rounded-lg border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 neon-box-cyan disabled:opacity-40 disabled:cursor-not-allowed"
+          className="font-display text-sm tracking-widest px-10 py-3 rounded-lg border border-primary/50 text-white hover:bg-primary/10 transition-all duration-300 neon-box-cyan disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {loading ? "SUBMITTING..." : "SUBMIT REGISTRATION"}
         </button>
