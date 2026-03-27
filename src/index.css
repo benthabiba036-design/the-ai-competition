@@ -84,18 +84,18 @@
 
 .neon-text-cyan {
   text-shadow:
-    0 0 7px hsla(313, 90%, 52%, 0.8),
-    0 0 10px hsla(298, 90%, 52%, 0.6),
-    0 0 21px hsla(283, 90%, 52%, 0.4),
-    0 0 42px hsla(283, 90%, 52%, 0.2);
+    0 0 7px hsla(310, 14%, 91%, 0.925),
+    0 0 10px hsl(300, 19%, 88%),
+    0 0 21px hsl(283, 27%, 87%),
+    0 0 42px hsla(284, 13%, 84%, 0.911);
 }
 
 .neon-text-purple {
   text-shadow:
-    0 0 7px hsla(308, 80%, 45%, 0.8),
+    0 0 7px hsla(308, 46%, 66%, 0.8),
     0 0 10px hsla(308, 80%, 45%, 0.6),
     0 0 21px hsla(300, 80%, 45%, 0.4),
-    0 0 42px hsla(323, 80%, 45%, 0.2);
+    0 0 42px hsla(323, 31%, 95%, 0.904);
 }
 
 .neon-box-cyan {
@@ -113,8 +113,8 @@
 }
 
 .glass-panel {
-  background: hsla(308, 83%, 27%, 0.8);
-  border: 1px solid hsla(295, 90%, 20%, 0.15);
+  background: hsla(306, 20%, 79%, 0.8);
+  border: 1px solid hsla(295, 64%, 68%, 0.15);
 }
 
 /* Cursed energy animation */
