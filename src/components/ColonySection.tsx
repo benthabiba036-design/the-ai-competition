@@ -47,8 +47,8 @@ const ColonySection = ({ selected, setSelected }: ColonySectionProps) => {
                   background: `radial-gradient(circle, ${isSelected ? "hsl(142 71% 45% / 0.15)" : "hsl(0 15% 8% / 0.7)"} 0%, transparent 70%)`,
                   boxShadow: isSelected
                     ? "0 0 30px hsl(142 71% 45% / 0.5), 0 0 60px hsl(142 71% 45% / 0.2), inset 0 0 30px hsl(142 71% 45% / 0.1)"
-                    : "0 0 20px hsl(10 90% 52% / 0.2), 0 0 40px hsl(350 80% 45% / 0.1), inset 0 0 20px hsl(10 90% 52% / 0.05)",
-                  border: `2px solid ${isSelected ? "hsl(142 71% 45% / 0.6)" : "hsl(10 90% 52% / 0.2)"}`,
+                    : "0 0 20px hsl(270 100% 70% / 0.2), 0 0 40px hsl(260 100% 60% / 0.1), inset 0 0 20px hsl(270 100% 70% / 0.05)",
+                  border: `2px solid ${isSelected ? "hsl(142 71% 45% / 0.6)" : "hsl(270 100% 70% / 0.2)"}`,
                 }}
               >
                 <div
@@ -56,7 +56,7 @@ const ColonySection = ({ selected, setSelected }: ColonySectionProps) => {
                   style={{
                     background: isSelected
                       ? "conic-gradient(from 0deg, transparent 0%, hsl(142 71% 45% / 0.6) 25%, transparent 50%, hsl(142 71% 45% / 0.4) 75%, transparent 100%)"
-                      : "conic-gradient(from 0deg, transparent 0%, hsl(10 90% 52% / 0.4) 25%, transparent 50%, hsl(350 80% 45% / 0.4) 75%, transparent 100%)",
+                      : "conic-gradient(from 0deg, transparent 0%, hsl(270 100% 70%/ 0.4) 25%, transparent 50%, hsl(260 100% 60% / 0.4) 75%, transparent 100%)",
                     animation: "energy-wave 8s linear infinite",
                   }}
                 />
