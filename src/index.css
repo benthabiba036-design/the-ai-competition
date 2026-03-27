@@ -73,6 +73,11 @@
   }
 }
 
+/* ===== Neuroplex Title ===== */
+.neuroplex-title {
+  color: hsl(270, 100%, 80%);
+}
+
 /* Neon glow effects */
 .neon-text-red {
   text-shadow:
@@ -112,9 +117,16 @@
     inset 0 0 5px hsla(280, 100%, 50%, 0.1);
 }
 
+/* ===== Submit Box (clearer) ===== */
 .glass-panel {
-  background: hsla(240, 20%, 12%, 0.85);
-  border: 1px solid hsla(270, 100%, 70%, 0.2);
+  background: hsla(240, 20%, 12%, 0.95);
+  border: 1px solid hsla(270, 100%, 70%, 0.3);
+  color: hsl(0 0% 98%);
+}
+
+/* ===== Button Text ===== */
+button {
+  color: hsl(0 0% 100%);
 }
 
 /* Animations unchanged */
@@ -153,9 +165,7 @@
   0% { border-color: hsla(270, 100%, 70%, 0.6); }
   50% { border-color: hsla(260, 100%, 60%, 0.6); }
   100% { border-color: hsla(280, 100%, 75%, 0.6); }
-}
-
-@keyframes particle-float {
+}@keyframes particle-float {
   0% { transform: translateY(100vh) scale(0); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
@@ -165,7 +175,9 @@
 @keyframes energy-wave {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}@keyframes countdown-pulse {
+}
+
+@keyframes countdown-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
