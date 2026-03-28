@@ -16,7 +16,7 @@ const KoganeSection = ({ formData, setFormData }: KoganeSectionProps) => {
     { key: "email", label: "Email", type: "email" },
     { key: "phone", label: "Phone Number", type: "tel" },
     { key: "team", label: "Team Name", type: "text" },
-    { key: "password", label: "Password", type: "password" },
+    { key: "password", label: "team code", type: "password" },
   ] as const;
 
   return (
