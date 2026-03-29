@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { supabase } from "@/lib/supabase";
+import { hasSupabaseCredentials, supabase } from "@/lib/supabase";
 
 interface SubmitSectionProps {
   formData: {
@@ -17,15 +17,28 @@ interface SubmitSectionProps {
 const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const webhookUrl = "https://n8n.abdeldjalil.cfd/webhook/ai-competition";
 
   const isFormComplete = Object.values(formData).every(
     (v) => v.trim() !== ""
   );
-  const canSubmit = isFormComplete && selectedColony !== null;
+  const isEmailValid = emailRegex.test(formData.email.trim());
+  const canSubmit = isFormComplete && isEmailValid && selectedColony !== null && hasSupabaseCredentials;
 
   const handleSubmit = async () => {
+    if (!hasSupabaseCredentials || !supabase) {
+      toast.error("Missing Supabase configuration. Add VITE_SUPABASE_URL and VITE_SUPABASE_KEY in a .env file.");
+      return;
+    }
+
     if (!isFormComplete) {
       toast.error("Please fill in all registration fields above!");
+      return;
+    }
+
+    if (!isEmailValid) {
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -48,6 +61,27 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
     if (error) {
       console.error(error);
       toast.error("Error saving data!");
+      return;
+    }
+
+    try {
+      const webhookResponse = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          colony: selectedColony,
+        }),
+      });
+
+      if (!webhookResponse.ok) {
+        throw new Error(`Webhook request failed with status ${webhookResponse.status}`);
+      }
+    } catch (webhookError) {
+      console.error(webhookError);
+      toast.error("Saved to Supabase, but failed to send data to webhook.");
       return;
     }
 
@@ -84,14 +118,18 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
       >
         {!canSubmit && (
           <p className="text-primary font-body mb-4 text-xs">
-            ⚠️ Fill all fields and select a colony to submit
+            {hasSupabaseCredentials
+              ? isFormComplete && !isEmailValid
+                ? "⚠️ Please enter a valid email address"
+                : "⚠️ Fill all fields and select a colony to submit"
+              : "⚠️ Add Supabase env vars to enable submission"}
           </p>
         )}
 
         <button
           onClick={handleSubmit}
           disabled={!canSubmit || loading}
-          className="font-display text-sm tracking-widest px-10 py-3 rounded-lg border border-primary/50 text-white hover:bg-primary/10 transition-all duration-300 neon-box-cyan disabled:opacity-40 disabled:cursor-not-allowed"
+          className="font-display text-base tracking-widest px-12 py-4 rounded-lg border border-primary/50 text-white hover:bg-primary/10 transition-all duration-300 neon-box-cyan disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {loading ? "SUBMITTING..." : "SUBMIT REGISTRATION"}
         </button>
