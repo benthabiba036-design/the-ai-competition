@@ -24,7 +24,7 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
     (v) => v.trim() !== ""
   );
   const isEmailValid = emailRegex.test(formData.email.trim());
-  const canSubmit = isFormComplete && isEmailValid && selectedColony !== null && hasSupabaseCredentials;
+  const canSubmit = isFormComplete && isEmailValid && selectedColony !== null;
 
   const handleSubmit = async () => {
     if (!hasSupabaseCredentials || !supabase) {
@@ -116,13 +116,13 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        {!canSubmit && (
+        {(!canSubmit || !hasSupabaseCredentials) && (
           <p className="text-primary font-body mb-4 text-xs">
-            {hasSupabaseCredentials
-              ? isFormComplete && !isEmailValid
+            {!hasSupabaseCredentials
+              ? "⚠️ Supabase env vars are missing. Submission will fail until they are added."
+              : isFormComplete && !isEmailValid
                 ? "⚠️ Please enter a valid email address"
-                : "⚠️ Fill all fields and select a colony to submit"
-              : "⚠️ Add Supabase env vars to enable submission"}
+                : "⚠️ Fill all fields and select a colony to submit"}
           </p>
         )}
 
