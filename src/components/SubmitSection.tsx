@@ -128,7 +128,7 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
 
         <button
           onClick={handleSubmit}
-          disabled={!canSubmit || loading}
+          disabled={loading}
           className="font-display text-base tracking-widest px-12 py-4 rounded-lg border border-primary/50 text-white hover:bg-primary/10 transition-all duration-300 neon-box-cyan disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {loading ? "SUBMITTING..." : "SUBMIT REGISTRATION"}
