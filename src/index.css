@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   :root {
     --background: 0 0% 6%;
@@ -44,8 +42,8 @@
     --ember-orange: 280 100% 75%;
     --danger-red: 0 80% 40%;
 
-    --font-display: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
+    --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
     --sidebar-background: 240 20% 12%;
     --sidebar-foreground: 0 0% 98%;

@@ -37,10 +37,10 @@ const Index = () => {
 
       <div className="relative z-10">
         <HeroSection />
-        <KoganeSection formData={formData} setFormData={setFormData} />
-        <RulesSection />
         <ColonySection selected={selectedColony} setSelected={setSelectedColony} />
+        <KoganeSection formData={formData} setFormData={setFormData} />
         <SubmitSection formData={formData} selectedColony={selectedColony} />
+        <RulesSection />
         <FooterSection />
       </div>
     </motion.div>

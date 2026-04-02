@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Orbitron", "sans-serif"],
-        body: ["Rajdhani", "sans-serif"],
+        display: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        body: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
