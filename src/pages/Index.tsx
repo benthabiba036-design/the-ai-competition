@@ -1,18 +1,11 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import bgImage from "@/assets/bg-image.jpg";
 import ParticleBackground from "@/components/ParticleBackground";
 import HeroSection from "@/components/HeroSection";
-import KoganeSection from "@/components/KoganeSection";
 import RulesSection from "@/components/RulesSection";
-import ColonySection from "@/components/ColonySection";
-import SubmitSection from "@/components/SubmitSection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
-  const [selectedColony, setSelectedColony] = useState<number | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", team: "", password: "" });
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -37,9 +30,14 @@ const Index = () => {
 
       <div className="relative z-10">
         <HeroSection />
-        <ColonySection selected={selectedColony} setSelected={setSelectedColony} />
-        <KoganeSection formData={formData} setFormData={setFormData} />
-        <SubmitSection formData={formData} selectedColony={selectedColony} />
+        <section className="relative z-10 py-20 px-4">
+          <div className="max-w-md mx-auto text-center glass-panel rounded-lg p-8 neon-box-cyan">
+            <p className="text-green-400 font-display text-lg">REGISTRATION ENDED</p>
+            <p className="text-muted-foreground text-sm font-body mt-2">
+              Registration is closed. New submissions are no longer available.
+            </p>
+          </div>
+        </section>
         <RulesSection />
         <FooterSection />
       </div>

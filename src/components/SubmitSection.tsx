@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { hasSupabaseCredentials, supabase } from "@/lib/supabase";
@@ -17,16 +17,26 @@ interface SubmitSectionProps {
 const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [registrationLocked, setRegistrationLocked] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const webhookUrl = "https://n8n.abdeldjalil.cfd/webhook/ai-competition";
+
+  useEffect(() => {
+    setRegistrationLocked(localStorage.getItem("neuroplex-registration-complete") === "true");
+  }, []);
 
   const isFormComplete = Object.values(formData).every(
     (v) => v.trim() !== ""
   );
   const isEmailValid = emailRegex.test(formData.email.trim());
-  const canSubmit = isFormComplete && isEmailValid && selectedColony !== null;
+  const canSubmit = isFormComplete && isEmailValid && selectedColony !== null && !registrationLocked;
 
   const handleSubmit = async () => {
+    if (registrationLocked || submitted) {
+      toast.error("Registration is already completed and cannot be submitted again.");
+      return;
+    }
+
     if (!hasSupabaseCredentials || !supabase) {
       toast.error("Missing Supabase configuration. Add VITE_SUPABASE_URL and VITE_SUPABASE_KEY in a .env file.");
       return;
@@ -86,10 +96,12 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
     }
 
     setSubmitted(true);
+    setRegistrationLocked(true);
+    localStorage.setItem("neuroplex-registration-complete", "true");
     toast.success("Registration complete! You have entered the Culling Game.");
   };
 
-  if (submitted) {
+  if (submitted || registrationLocked) {
     return (
       <section className="relative z-10 py-12 px-4">
         <motion.div
@@ -98,9 +110,9 @@ const SubmitSection = ({ formData, selectedColony }: SubmitSectionProps) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-green-400 font-display text-lg">✓ REGISTERED</p>
+          <p className="text-green-400 font-display text-lg">REGISTRATION ENDED</p>
           <p className="text-muted-foreground text-sm font-body mt-2">
-            You have entered the Culling Game
+            Registration is complete and submissions are now closed.
           </p>
         </motion.div>
       </section>
